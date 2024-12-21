@@ -1,0 +1,4 @@
+__pycache__/
+DATA/
+OUTPUT/
+eval_result.txt
