@@ -1,6 +1,6 @@
 mkdir -p $4
 
-CUDA_VISIBLE_DEVICES=$1 python -m torch.distributed.launch --master_port=$3 --nproc_per_node=$2 finetune_simplified.py \
+CUDA_VISIBLE_DEVICES=$1 proxychains4 python -m torch.distributed.launch --master_port=$3 --nproc_per_node=$2 finetune_simplified.py \
     --model_type t5 \
     --tokenizer_name=t5-base \
     --model_name_or_path t5-base \

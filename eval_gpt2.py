@@ -47,7 +47,7 @@ import pdb
 from transformers import BertForSequenceClassification
 from helpers import *
 
-from dataset import LogicDataset
+from dataset_gpt2 import LogicDataset
 
 logger = logging.getLogger(__name__)
 

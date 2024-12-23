@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=$1 python eval.py \
+CUDA_VISIBLE_DEVICES=$1 proxychains4 python eval.py \
     --model_type bert \
     --tokenizer_name=bert-base-uncased \
     --model_name_or_path bert-base-uncased \

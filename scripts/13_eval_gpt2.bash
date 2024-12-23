@@ -1,7 +1,8 @@
-CUDA_VISIBLE_DEVICES=$1 proxychains4 python eval.py \
-        --model_type t5 \
-        --tokenizer_name=t5-base \
-        --model_name_or_path t5-base \
+CUDA_VISIBLE_DEVICES=$1 proxychains4 python eval_gpt2.py \
+        --model_type gpt2 \
+        --tokenizer_name=gpt2 \
+        --model_name_or_path gpt2 \
+        --config_name gpt2 \
         --do_eval \
         --do_lower_case \
         --save_steps -1 \
@@ -11,7 +12,7 @@ CUDA_VISIBLE_DEVICES=$1 proxychains4 python eval.py \
         --logging_steps 50 \
         --num_workers 1 \
         --warmup_steps 0.05 \
-        --max_length 1200 \
+        --max_length 1024 \
         --group_by_which_depth depth \
         --limit_report_max_depth 6 \
         --output_dir OUTPUT/eval \
