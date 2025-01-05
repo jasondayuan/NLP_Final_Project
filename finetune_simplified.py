@@ -387,6 +387,8 @@ def evaluate(args, model, tokenizer, prefix="", eval_dataset = None):
 def main():
     parser = argparse.ArgumentParser()
 
+    parser.add_argument("--empty_bert", action="store_true")
+
     # Required parameters
     parser.add_argument(
         "--model_type",
@@ -613,16 +615,28 @@ def main():
         do_lower_case=args.do_lower_case,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
-    if "bert" in args.model_name_or_path: 
+    if "bert" in args.model_name_or_path and not args.empty_bert: 
         model = BertForSequenceClassification.from_pretrained(
             args.model_name_or_path,
             config=config,
             cache_dir=args.cache_dir if args.cache_dir else None,
         )
-    if "t5" in args.model_name_or_path:
+    elif "bert" in args.model_name_or_path and args.empty_bert:
+        print("""
+            ****************************************************
+            **************Loading empty bert model**************
+            ****************************************************
+        """)
+        model = AutoModelForSequenceClassification.from_config(config)
+    elif "t5" in args.model_name_or_path:
         from transformers import T5Tokenizer, T5ForConditionalGeneration
         model = T5ForConditionalGeneration.from_pretrained(args.model_name_or_path)
     else:
+        print("""
+            ****************************************************
+            ************** Not recognized model   **************
+            ****************************************************
+        """)
         model = AutoModelForSequenceClassification.from_pretrained(
             args.model_name_or_path,
             config=config,

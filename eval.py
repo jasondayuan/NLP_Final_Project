@@ -388,6 +388,7 @@ def main():
     parser = argparse.ArgumentParser()
 
     # Required parameters
+    parser.add_argument("--empty_bert", action="store_true")
     parser.add_argument(
         "--model_type",
         default=None,
