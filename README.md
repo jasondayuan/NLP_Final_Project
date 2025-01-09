@@ -2,6 +2,8 @@
 
 This repository is heavily based on https://github.com/joshuacnf/paradox-learning2reason.
 
+Check the original repository and the ```environment.yml``` file for environment requirements.
+
 ## 1 Generate RP/LP/RP_SMALL/LP_SMALL
 
 Note that although I use 'RP' or 'LP' to refer to the datasets I used to train the models, the actual datasets I used are scaled-down versions of the original RP/LP datasets, as mentioned in section 2 in the report.
