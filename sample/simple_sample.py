@@ -2,7 +2,7 @@ import json
 import random
 from tqdm import tqdm
 
-MAX_DEPTH = 30
+MAX_DEPTH = 6
 EXAMPLES_PER_DEPTH = 500
 DISTURBANCE_NUM = 0
 

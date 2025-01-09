@@ -27,8 +27,6 @@ if __name__ == '__main__':
                 lim_data_false[example['depth']].append(example)
 
     # Redistribute data
-    # 1. Examples with depth 0/1 should be no more than 3200 in the training set
-    # 2. Other examples are sampled freely
     examples_per_depth = [3200, 3200, 4800, 4600, 3200, 2400, 1000]
     data_lim = []
     for depth in depths:
