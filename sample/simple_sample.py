@@ -2,8 +2,9 @@ import json
 import random
 from tqdm import tqdm
 
-MIN_RULES = 0
-MAX_RULES = 9
+MAX_DEPTH = 30
+EXAMPLES_PER_DEPTH = 500
+DISTURBANCE_NUM = 0
 
 def read_vocab(vocab_file):
     vocab = []
@@ -13,6 +14,7 @@ def read_vocab(vocab_file):
     return vocab
 
 def sample_one_example(vocab, depth):
+
     num_preds = depth + 1
     num_rules = depth
     preds = random.sample(vocab, num_preds)
@@ -22,41 +24,42 @@ def sample_one_example(vocab, depth):
     example['query'] = preds[-1]
     example['facts'] = [preds[0]]
     rules = []
+
     for i in range(num_rules):
         rule = []
         rule.append([preds[i]])
         rule.append(preds[i + 1])
         rules.append(rule)
-    # if num_rules < MAX_RULES:
-    #     for i in range(1):
-    #         head = preds[0]
-    #         tail = preds[0]
-    #         while head in preds and tail in preds:
-    #             head = random.choice(vocab)
-    #             tail = random.choice(vocab)
-    #         rule = []
-    #         rule.append([head])
-    #         rule.append(tail)
-    #         rules.append(rule)
-    #         if head not in example['preds']:
-    #             example['preds'].append(head)
-    #         if tail not in example['preds']:
-    #             example['preds'].append(tail)
+
+    for i in range(DISTURBANCE_NUM):
+        head = preds[0]
+        tail = preds[0]
+        while head in example['preds'] or tail in example['preds']:
+            head = random.choice(vocab)
+            tail = random.choice(vocab)
+        rule = []
+        rule.append([head])
+        rule.append(tail)
+        rules.append(rule)
+        example['preds'].append(head)
+        example['preds'].append(tail)
+
     example['rules'] = rules
     example['depth'] = depth
+
     return example
 
 def samples_examples(vocab, control_num):
     examples = []
     for _ in range(control_num):
-        for depth in range(7):
+        for depth in range(MAX_DEPTH + 1):
             example = sample_one_example(vocab, depth)
             examples.append(example)
     return examples
 
 if __name__ == "__main__":
     vocab = read_vocab('sample/vocab.txt')
-    examples = samples_examples(vocab, 500)
+    examples = samples_examples(vocab, EXAMPLES_PER_DEPTH)
     with open('DATA/SIMPLE/simple_dataset.json', 'w') as fout:
         json.dump(examples, fout)
     
