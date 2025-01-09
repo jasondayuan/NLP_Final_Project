@@ -107,4 +107,4 @@ bash scripts/6_eval_bert.bash 0 \
 
 ## 5 Report and presentation
 
-The report is in the file `Final Project Report.pdf`, and the presentation slide is in the file `Project.pptx`.
+The report is in the file `Final_Project_Report.pdf`, and the presentation slide is in the file `Project.pptx`.
