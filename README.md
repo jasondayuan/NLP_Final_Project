@@ -26,7 +26,7 @@ bash scripts/11_generate_lp_small.py
 
 For the sake of simplicity, the commands below are for training/evaluating BERT/GPT2/T5 on RP_SMALL. If you want to train on LP_SMALL, simply change all the 'RP_SMALL' in the commands to 'LP_SMALL'.
 
-Note that after training the BERT model, it is needed to make a slight modfication to the config.json file of the checkpoint directory. There would be a line saying ```"max_position_embeddings": 512```, and you should change it to ```"max_position_embeddings": 1012``` because the position embedding length has been enlongated before training. But for GPT2 and T5, there is no such issue so no modification is needed.
+Note that after training the BERT model, it is needed to make a slight modfication to the ```config.json``` file of the checkpoint directory. There would be a line saying ```"max_position_embeddings": 512```, and you should change it to ```"max_position_embeddings": 1012``` because the position embedding length has been enlongated before training. But for GPT2 and T5, there is no such issue so no modification is needed.
 
 ```
 # Train BERT on RP_SMALL
@@ -73,7 +73,7 @@ bash scripts/8_eval_t5.bash 0 \
 
 In section 3.1.2, I constructed a simple dataset to assess the model's ability to reason. Simply run ```python sample/simple_sample.py``` to generate the dataset.
 
-There are some parameters that you can tweak to adjust the reasoning depth, examples per depth and the number of disturbance rules added.
+There are some parameters in ```simple_sample.py``` that you can tweak to adjust the reasoning depth, examples per depth and the number of disturbance rules added.
 
 ```
 MAX_DEPTH = 6 # Max reasoning depth
