@@ -24,7 +24,7 @@ bash scripts/11_generate_lp_small.py
 
 ## 2 Train/Evaluate BERT/GPT2/T5 on RP_SMALL/LP_SMALL
 
-For the sake of simplicity, the commands below are for training/evaluating BERT/GPT2/T5 on RP_SMALL. If you want to train on LP_SMALL, simply change all the 'RP_SMALL' in the commands to 'LP_SMALL'.
+For the sake of simplicity, the commands below are for training/evaluating BERT/GPT2/T5 on RP_SMALL. If you want to train on LP_SMALL, simply change all the 'RP_SMALL' in the commands to 'LP_SMALL'. As for the evaluation commands, ```--val_file_path``` should be the dataset you want to evaluate on and ```--custom_weight``` should be the relative path of the checkpoint directory you want to use.
 
 Note that after training the BERT model, it is needed to make a slight modfication to the ```config.json``` file of the checkpoint directory. There would be a line saying ```"max_position_embeddings": 512```, and you should change it to ```"max_position_embeddings": 1012``` because the position embedding length has been enlongated before training. But for GPT2 and T5, there is no such issue so no modification is needed.
 
